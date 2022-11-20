@@ -45,6 +45,7 @@ export function TableOfContents({toc}) {
             margin-bottom: 1rem;
             padding: 0.5rem 0 0;
             border-left: 1px solid var(--border-color);
+            max-width: 40rem;
           }
           ul {
             margin: 0;

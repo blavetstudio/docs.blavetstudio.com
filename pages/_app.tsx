@@ -13,7 +13,7 @@ import '../public/globals.css'
 
 import type { AppProps } from 'next/app'
 
-const TITLE = 'Markdoc';
+const TITLE = 'Blavet Studio Docs';
 const DESCRIPTION = 'A powerful, flexible, Markdown-based authoring framework';
 
 function collectHeadings(node, sections = []) {
@@ -92,7 +92,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             height: calc(100vh - var(--top-nav-height));
             flex-grow: 1;
             font-size: 16px;
-            padding: 0 2rem 2rem;
+            padding: 0 2rem 2rem;            
           }
         `}
       </style>

@@ -5,7 +5,59 @@ import Link from 'next/link';
 const items = [
   {
     title: 'Get started',
-    links: [{href: '/docs', children: 'Overview'}],
+    links: [{href: '/docs', children: 'Overview'}],    
+  },
+  {
+    title: 'Roots',
+    links: [
+      { href: '/sage', children: 'Sage' },
+      { href: '/acorn', children: 'Acorn' },
+      { href: '/trellis', children: 'Trellis' },
+      { href: '/vagrant', children: 'Vagrant' },
+      { href: '/valet', children: 'Valet' },
+    ],    
+  },
+  {
+    title: 'GIT',
+    links: [
+      { href: '/git', children: 'Git' },
+      { href: '/bitbucket', children: 'Bitbucket' },
+      { href: '/github', children: 'Github' },
+      { href: '/ci-cd', children: 'CI/CD' },
+    ],    
+  },
+  {
+    title: 'Hosting',
+    links: [
+      { href: '/aws', children: 'AWS' },
+      { href: '/digital-ocean', children: 'Digital Ocean' },
+      { href: '/kinsta', children: 'Kinsta' },
+      { href: '/server', children: 'Server' },
+    ],    
+  },
+  {
+    title: 'Desarrollo',
+    links: [
+      { href: '/osx', children: 'OSX' },
+      { href: '/composer', children: 'Composer' },
+      { href: '/command-line', children: 'Línea de comandos' },
+      { href: '/performance', children: 'Rendimiento' },
+      { href: '/staging', children: 'Servidor Staging' },
+    ],    
+  },
+  {
+    title: 'WordPress',
+    links: [
+      { href: '/wp-cli', children: 'WP-CLI' },      
+    ],    
+  },
+  {
+    title: 'Procesos',
+    links: [
+      { href: '/migration-backup', children: 'Backup migración' },      
+      { href: '/new-project', children: 'Nuevo proyecto' },      
+      { href: '/email', children: 'Correo' },      
+    ],    
   },
 ];
 
