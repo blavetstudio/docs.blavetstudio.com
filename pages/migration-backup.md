@@ -27,7 +27,7 @@ Cosas a tener en cuenta para el formateo del ordenador
 - Listado en PNG virtualbox-machines.png
 
 ## Aplicaciones
-- Instalar todas las que sean necesarioas. Tanto Dock como las de la carpeta Aplicaciones
+- Instalar todas las que sean necesarias. Tanto Dock como las de la carpeta Aplicaciones
 
 ## Contraseñas
 - Todas en 1Password importarlas.
@@ -84,7 +84,7 @@ vscode-settings.json
 Firefox  
 Google Chrome  
 Edge  
-Sequel Pro  
+Sequel Pro/Ace  
 VSCode
 Toggl Track
 Discord

@@ -259,3 +259,32 @@ extension="apcu.so"
 3. Por último hacer un restart para aplicar cambios
 
 ```$ valet restart```
+
+## Cambio de versión de XDebug a v3
+
+Al hacer el cambio de PHP a la v8.X, cuando activamos XDebug en Valet con valet use xdebug nos bajará la versión 3. La configuración de XDebug deberá cambiar ya que si no tendremos el siguiente error:
+
+```Xdebug: [Config] The setting 'xdebug.remote_autostart' has been renamed```
+
+Tendremos la configuración de XDebug en el php.ini de 8.X o en cualquier archivo de configuración interno dentro de conf.d.
+
+```cd /usr/local/etc/valet-php/8.0/```
+
+Modificar la configuración de xdebug2
+
+```
+xdebug.remote_enable=1
+xdebug.remote_host=localhost
+xdebug.remote_port=9000
+xdebug.remote_autostart=1
+```
+
+por la de xdebug3
+
+```
+xdebug.mode=debug
+xdebug.client_host=localhost
+xdebug.client_port=9000
+xdebug.start_with_request=1
+xdebug.log_level=0
+```
