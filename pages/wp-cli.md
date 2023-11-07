@@ -56,3 +56,21 @@ Una vez actualizado podemos ir al directorio del plugin o tema y ejecutar lo sig
 ```wp i18n make-pot . languages/nombre-del-dominio.pot```
 
 Si nos da algún error, hay que mirar que no esté activo XDebug en el servicio php corriendo en el servidor. Si no dará un error de *** Fatal error: Maximum function nesting level of 'XXX' reached, aborting!” in PHP ***
+
+## Error icu4c
+
+Al actualizar brew e intentar instalar la última versión de WP-CLI nos hemos encontrado con que se actualiza la versión de icu4c pero PHP busca la versión para la que fue compilado.
+
+En nuestro caso PHP buscaba icu4c 70 y esta se actualizó a la 73.6.
+
+Instalamos la versión 70, pero como es una versión anterior, hay que forzar esa instalación:
+
+https://mikebian.co/installing-an-old-homebrew-package/
+
+```
+$ brew tap-new $USER/local-tap
+$ brew extract --version=70 icu4c $USER/local-tap
+$ brew install icu4c@70
+
+$ brew link --overwrite --force icu4c@70
+``````
