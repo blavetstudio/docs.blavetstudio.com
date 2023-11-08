@@ -74,3 +74,5 @@ $ brew install icu4c@70
 
 $ brew link --overwrite --force icu4c@70
 ``````
+
+https://mikebian.co/installing-an-old-homebrew-package/

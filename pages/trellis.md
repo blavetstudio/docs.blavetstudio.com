@@ -206,3 +206,15 @@ site/wp-cli.yml
 
 
 
+## ModuleNotFoundError: No module named 'ansible' Trellis error when deploying
+
+Si encontramos este error:
+
+Traceback (most recent call last):
+  File "/Users/carlos/Sites/gruposaona.com/trellis/.trellis/virtualenv/bin/ansible-playbook", line 34, in <module>
+    from ansible import context
+ModuleNotFoundError: No module named 'ansible'
+exit status 1
+
+Tenemos que borrar la carpeta de trellis/.trellis y hacer un trellis init de nuevo.
+Nos ha pasado por haber hecho una actualización de brew y nos ha petado la instalación
