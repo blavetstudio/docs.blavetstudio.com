@@ -288,3 +288,13 @@ xdebug.client_port=9000
 xdebug.start_with_request=1
 xdebug.log_level=0
 ```
+
+## Valet stop se queda colgado
+
+A veces se queda colgado valet stop en alguno de los servicios porque no lo puede parar. Para solucionarlo:
+
+``` $ brew services stop mariadb ```
+``` $ brew services stop redis ```
+``` $ brew services stop mailhog ```
+
+Luego igual hay que hacer un start manual cuando hagamos valet start
