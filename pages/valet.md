@@ -4,8 +4,10 @@ title: Valet
 
 # {% $markdoc.frontmatter.title %}
 
+## Instalar/Actualizar Valet +
+```$ composer global require weprovide/valet-plus -W```
 
-# Instalar Laravel Valet
+## Instalar Laravel Valet
 ```$ brew update```  
 ```$ brew install php```  
 ```$ composer global require laravel/valet```  
