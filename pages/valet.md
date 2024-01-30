@@ -300,3 +300,37 @@ A veces se queda colgado valet stop en alguno de los servicios porque no lo pued
 ``` $ brew services stop mailhog ```
 
 Luego igual hay que hacer un start manual cuando hagamos valet start
+
+
+## 502 Bad Gateway
+
+https://github.com/weprovide/valet-plus/issues/628
+
+- Configuracion NGINX
+code /usr/local/etc/nginx/
+
+
+## Al cambiar versión de PHP a una obsoleta obtenemos un error por composer dependencies
+
+https://github.com/weprovide/valet-plus/issues/620
+
+PHP Fatal error: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0". You are running 7.4
+
+Por lo visto si ponemos esto en el composer global ~/.composer debería funcionar:
+
+"config": {
+    "platform-check": false
+}
+
+
+
+## Unable to determine linked PHP.
+
+- Al loro con el cambio a php 7.4
+Al hacer **valet fix** cambia a la versión por defecto que es la 7.4 y luego no hay dios que cambie a la 8.X. Y como la 8 es la versión mínima para que se ejecuten los PHPs pues la tenemos liada:
+
+/Users/carlos/.composer/vendor/composer/platform_check.php
+
+Para solucionarlo 
+
+brew unlink php && brew link php
