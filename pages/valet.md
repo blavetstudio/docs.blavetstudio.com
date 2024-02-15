@@ -272,6 +272,10 @@ Tendremos la configuración de XDebug en el php.ini de 8.X o en cualquier archiv
 
 ```cd /usr/local/etc/valet-php/8.0/```
 
+En nuevos sistemas operativos se utiliza esta otra localización:
+
+```cd /usr/local/etc/php/8.0/conf.d/20-xdebug.ini```
+
 Modificar la configuración de xdebug2
 
 ```
