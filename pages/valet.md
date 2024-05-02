@@ -338,3 +338,35 @@ Al hacer **valet fix** cambia a la versión por defecto que es la 7.4 y luego no
 Para solucionarlo 
 
 brew unlink php && brew link php
+
+## Call to undefined function apcu_fetch()
+
+Al poner la versión 7.4 de PHP para revisar un proyecto nos ha dado el siguiente error
+
+Fatal error: Uncaught Error: Call to undefined function apcu_fetch() in /Users/carlos/.composer/vendor/weprovide/valet-plus/server.php:73 Stack trace: #0 {main} thrown in /Users/carlos/.composer/vendor/weprovide/valet-plus/server.php on line 73
+
+Lo solucionamos temporalmente poniendo este código en .composer/vendor/weprovide/valet-plus/server.php
+
+```
+if(!function_exists('apcu_fetch')) {
+  function apcu_fetch($key, &$success = null) {
+     global $request_cache;
+     if(!$request_cache || !is_array($request_cache) || !array_key_exists($key,$request_cache)) {
+       $success = false;
+       return false;
+     } else {
+       $success = true;
+       return $request_cache[$key];
+     }
+  }
+
+  function apcu_add($key, $value) {
+     global $request_cache;
+     if(!$request_cache || !is_array($request_cache)) {
+       $request_cache = [];
+     }
+
+     $request_cache[$key] = $value;
+  }
+}
+```
