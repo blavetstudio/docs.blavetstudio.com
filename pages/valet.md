@@ -328,7 +328,7 @@ Por lo visto si ponemos esto en el composer global ~/.composer debería funciona
 
 
 
-## Unable to determine linked PHP.
+## Unable to determine linked PHP. php: command not found
 
 - Al loro con el cambio a php 7.4
 Al hacer **valet fix** cambia a la versión por defecto que es la 7.4 y luego no hay dios que cambie a la 8.X. Y como la 8 es la versión mínima para que se ejecuten los PHPs pues la tenemos liada:
@@ -337,7 +337,13 @@ Al hacer **valet fix** cambia a la versión por defecto que es la 7.4 y luego no
 
 Para solucionarlo 
 
-brew unlink php && brew link php
+```brew unlink php && brew link php```
+
+o
+
+php: command not found
+
+```brew link --force php@8.1```
 
 ## Call to undefined function apcu_fetch()
 
