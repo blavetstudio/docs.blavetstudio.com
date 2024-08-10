@@ -376,3 +376,73 @@ if(!function_exists('apcu_fetch')) {
   }
 }
 ```
+
+## ERROR 2002 (HY000): Can't connect to local server through socket
+
+Al intentar conectar a mariadb nos aparece este error
+
+``` $ mysql -u root -p ```
+
+ERROR 2002 (HY000): Can't connect to local server through socket
+
+Nos da este error, seguramente por haber hecho la instalación de algún paquete.
+
+```$ brew services start mariadb```
+```$ brew services restart mariadb```
+```$ valet start```
+
+https://mariadb.com/kb/en/unable-to-start-mariadb-service-after-reboot/#comment_6806
+https://jira.mariadb.org/browse/MDEV-34350
+https://jira.mariadb.org/browse/MDEV-34422
+
+Según esto, el archivo ib_logfile0 estaría corrupto:
+
+En esta dirección estarían todos los datos de mariadb
+```$  cd /usr/local/var/mysql/```
+
+https://mariadb.com/kb/en/files-created-by-mariabackup/#ib_logfile0
+https://www.reddit.com/r/mariadb/comments/1enw1kn/comment/lhewapo/
+
+https://thoughtbot.com/blog/starting-and-stopping-background-services-with-homebrew
+
+https://laracasts.com/discuss/channels/servers/homebrew-mariadbmysql-socket-issues
+https://coderwall.com/p/os6woq/uninstall-all-those-broken-versions-of-mysql-and-re-install-it-with-brew-on-mac-mavericks
+https://stackoverflow.com/questions/4359131/brew-install-mysql-on-macos/6378429#6378429
+
+
+
+Error: Failure while executing; `/bin/launchctl bootstrap gui/501 /Users/carlos/Library/LaunchAgents/homebrew.mxcl.mariadb.plist` exited with 5. "mariadb"
+
+https://stackoverflow.com/questions/68975769/brew-services-cant-start-service-get-bootstrap-failed-5-input-output-error
+
+/usr/local/Cellar/mariadb/11.4.2
+
+https://stackoverflow.com/a/69264825/504910
+
+
+tail -n 100 /usr/local/var/log/postgresql@11.log
+
+sudo chown -R $(whoami) $(brew --prefix)/*
+
+**Importante esto**
+brew services list
+    If sudo is passed, operate on /Library/LaunchDaemons (started at boot).
+    Otherwise, operate on ~/Library/LaunchAgents (started at login).
+
+
+https://www.reddit.com/r/mariadb/comments/1enwalg/homebrew_mariadb_failure_while_executing/
+
+**Al final lo que he hecho ha sido reinstalar mariadb renombrando la carpeta /usr/local/var/mysql/ a /usr/local/var/mysql_back/ y copiando el archivo ib_logfile0**
+
+Luego he tenido el error de que el usuario root no tenía el password root, con lo que he tenido que resetearlo de nuevo
+
+``` $ mysql -u $(whoami)```
+
+use mysql;
+set password for 'root'@'localhost' = password('YOUR_ROOT_PASSWORD_HERE');
+flush privileges;
+quit
+
+## ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+
+https://stackoverflow.com/a/59687197/504910
