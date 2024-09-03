@@ -425,14 +425,16 @@ tail -n 100 /usr/local/var/log/postgresql@11.log
 sudo chown -R $(whoami) $(brew --prefix)/*
 
 **Importante esto**
-brew services list
-    If sudo is passed, operate on /Library/LaunchDaemons (started at boot).
-    Otherwise, operate on ~/Library/LaunchAgents (started at login).
+
+Diferencia entre ```brew services list``` y ```sudo brew services list```
+
+*If sudo is passed, operate on /Library/LaunchDaemons (started at boot). Otherwise, operate on ~/Library/LaunchAgents (started at login).*
 
 
 https://www.reddit.com/r/mariadb/comments/1enwalg/homebrew_mariadb_failure_while_executing/
+https://www.reddit.com/r/mariadb/comments/1ekz4zh/comment/lgqrmdo/
 
-**Al final lo que he hecho ha sido reinstalar mariadb renombrando la carpeta /usr/local/var/mysql/ a /usr/local/var/mysql_back/ y copiando el archivo ib_logfile0**
+**Al final lo que he hecho ha sido reinstalar mariadb renombrando la carpeta /usr/local/var/mysql/ a /usr/local/var/mysql_back/ y copiando el archivo ib_logfile0 de la nueva instalación a la antigua. Por último se renombra la carpeta mysql a mysql_new y mysql_back a mysql para tener acceso a las bases de datos**
 
 Luego he tenido el error de que el usuario root no tenía el password root, con lo que he tenido que resetearlo de nuevo
 
