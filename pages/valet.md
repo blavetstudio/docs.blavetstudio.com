@@ -441,10 +441,34 @@ Luego he tenido el error de que el usuario root no tenía el password root, con 
 ``` $ mysql -u $(whoami)```
 
 use mysql;
-set password for 'root'@'localhost' = password('YOUR_ROOT_PASSWORD_HERE');
+set password for 'root'@'localhost' = password('root');
 flush privileges;
 quit
 
 ## ERROR 1698 (28000): Access denied for user 'root'@'localhost'
 
 https://stackoverflow.com/a/59687197/504910
+
+
+## Versión diferente de PHP en consola o servidor
+
+A veces ```$ php -v``` en consola da una versión diferente de la versión que se está ejecutando en el servidor.
+
+Hay que ver si hay dos versiones ejecutándose al mismo tiempo. En mi caso en ```$ php -v``` ponía estaba ejecutando la 8.2 pero en la web salía como que estaba utilizando la 7.4
+
+Al revisar los servicios con ```brew services list``` ponía que se estaba ejecutando la 7.4
+Al revisar los servicios sudo con ```$ sudo brew services list``` ponía que se estaba ejecutando la 8.2
+
+He parado la 7.4 y todo OK.
+```$ brew services stop php@7.4```
+
+Es posible que se queden varios servicios de PHP corriendo. Lo ideal sería pararlos todos:
+
+```$ valet stop```
+```$ brew services stop php@X.X```
+```$ valet start```
+
+Y comprobar que solo haya una versión de PHP funcionando:
+
+```brew services list```
+```$ sudo brew services list```

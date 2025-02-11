@@ -81,6 +81,10 @@ I need the document root to point to public/current/web on staging and productio
 
 Last, I need to change the cronjobs to run /wp/wp-cron.php route as it is a bedrock installation and WordPress is installed in the /wp folder
 
+MAILTO=""
+#Ansible: domain WordPress cron
+1,16,31,46 * * * * curl -kILs -H 'Host: domain.com' https://localhost/wp/wp-cron.php?server_triggered_cronjob >/dev/null 2>&1 # Kinsta Primary domain cron
+
 2. Bloquear emails de staging - **Ponemos mu plugin para desactivar emails ya que postfix se autohabilita solo**
 
 I need to block POSTFIX email service completely on staging. I don't want any email be sent from staging as I have transactional emails that are sent to customers and they may get duplicated emails.

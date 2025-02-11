@@ -30,3 +30,8 @@ Al hacer el import quitamos la línea antes de importarla en la base de datos lo
 
 - https://github.com/Dolibarr/dolibarr/issues/29724
 - https://mariadb.org/mariadb-dump-file-compatibility-change/
+
+
+
+https://upsun.com/blog/bedrock-wordpress-development/
+https://12factor.net/

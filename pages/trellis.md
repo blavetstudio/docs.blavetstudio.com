@@ -218,3 +218,25 @@ exit status 1
 
 Tenemos que borrar la carpeta de trellis/.trellis y hacer un trellis init de nuevo.
 Nos ha pasado por haber hecho una actualización de brew y nos ha petado la instalación
+
+
+## Subir tamaño de archivos
+
+En trellis/group_vars/staging/main.yml (si es staging)
+
+```
+php_post_max_size: 100M
+php_upload_max_filesize: 100M
+php_max_execution_time: 300
+```
+
+```$ trellis provision --tags "php nginx wordpress-setup" staging ```
+
+Si no se ejecutan todos los tags al hacer el provision, es posible que sea NGINX el que no permita la subida por el límite que pone ```client_max_body_size``` en trellis/roles/wordpress-setup/templates/wordpress-site.conf.j2
+
+Si nos pasa que no podemos subir un archivo grande es posible que sea por eso. Lo que tenemos que hacer es modificar el límite de subida de NGINX en el servidor. Para esto logueamos via ssh con el usuario root y modificamos la configuración del sitio en nginx:
+
+```$ cd /etc/nginx/sites-enabled```
+```$ nano nombre-del-sitio.com.conf```
+client_max_body_size 100m
+```$ sudo systemctl restar nginx```
