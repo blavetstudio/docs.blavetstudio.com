@@ -49,7 +49,7 @@ jobs:
 
 https://github.com/blavetstudio/**proyecto**/settings
 
-- En el proyecto en github definir las siguientes variables en Settings / Security / Secrets / Actions:
+- En el proyecto en github definir las siguientes variables en Settings / Security / Secrets and variables / Actions:
 
 **ANSIBLE_VAULT_PASSWORD**  
 La sacaremos de trellis/.vault-pass
