@@ -472,3 +472,15 @@ Y comprobar que solo haya una versión de PHP funcionando:
 
 ```brew services list```
 ```$ sudo brew services list```
+
+## Error brew link --force --overwrite bloqueado
+
+Es posible que un proceso con brew haya quedado bloqueado y al volver a ejecutarlo nos de el siguiente error:
+
+*A brew link  --force --overwrite` process has already locked Please wait for it to finish or terminate it to continue.*
+
+Para corregirlo hay que borrar los bloqueos
+
+```
+$ rm -rf "$(brew --prefix)/var/homebrew/locks"
+```
