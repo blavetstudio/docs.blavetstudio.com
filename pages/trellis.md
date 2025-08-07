@@ -240,3 +240,37 @@ Si nos pasa que no podemos subir un archivo grande es posible que sea por eso. L
 ```$ nano nombre-del-sitio.com.conf```
 client_max_body_size 100m
 ```$ sudo systemctl restar nginx```
+
+## Fix Update apt packages
+
+Tenemos este error
+
+```fatal: [slynd_staging]: FAILED! => {"changed": false, "msg": "Failed to update apt cache: W:An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: http://nginx.org/packages/mainline/ubuntu jammy InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 2FD21310B49F6B46, W:http://ppa.launchpad.net/ondrej/php/ubuntu/dists/jammy/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details., E:Repository 'http://ppa.launchpad.net/ondrej/php/ubuntu jammy InRelease' changed its 'Label' value from '***** The main PPA for supported PHP versions with many PECL extensions *****' to 'PPA for PHP', W:This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details., W:https://mirror.rackspace.com/mariadb/repo/10.6/ubuntu/dists/jammy/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details."}```
+
+Seguramente no sea la mejor opción e igual tendríamos que actualizar Trellis, pero lo hemos solucionado editando estos archivos:
+
+*trellis/roles/common/tasks/main.yml*
+
+- name: Update apt packages
+  apt:
+    **update_cache: no**
+
+*trellis/roles/php/tasks/main.yml*
+- name: Add PHP PPA
+  apt_repository:
+    repo: "ppa:ondrej/php"
+    **update_cache: no**
+
+*trellis/roles/nginx/tasks/main.yml*
+- name: Add Nginx PPA
+  apt_repository:
+    repo: "{{ nginx_ppa }}"
+    update_cache: no    
+
+*trellis/roles/mariadb/tasks/main.yml*
+  - name: Add MariaDB PPA
+    apt_repository:
+      repo: "{{ mariadb_ppa }}"
+      update_cache: no
+
++ info: https://discourse.roots.io/t/trellis-provision-failed-to-update-apt-cache-unknown-reason/24758/12
