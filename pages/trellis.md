@@ -251,4 +251,37 @@ Si entramos con el user root al servidor y hacemos ```$ apt update``` veremos qu
 
 ```curl -O https://nginx.org/keys/nginx_signing.key && apt-key add ./nginx_signing.key```
 
+Otro posible problema es que el repo de mariadb esté dando problemas para actualizar MariaDB. En este commit Ben Words cambió el repo utilizado, pero es posible que en el servidor se quede configurado en /etc/apt/sources.list.d
+
+https://github.com/roots/trellis/pull/1422/commits/c95af7755d66002288218e6777601eda54543176
+
+La solución, renombrar el directorio /etc/apt/sources.list.d para que se vuelva a generar conforme vayan instalándose los diferentes roles:
+
+```$ mv /etc/apt/sources.list.d /etc/apt/sources.list.d.back```
+
 + info: https://discourse.roots.io/t/trellis-provision-failed-to-update-apt-cache-unknown-reason/24758/12
++ info: https://discourse.roots.io/t/provisioning-production-fails-no-release-file/21678/18
+
+
+## Fix unknown directive "http2" nginx
+
+https://discourse.roots.io/t/nginx-emerg-unknown-directive-http2/28842/1
+
+Hay que instalar última versión de nginx directamente con usuario root
+
+Seguir esta guía:
+https://medium.com/@mustafaaltunok/a-step-by-step-guide-to-upgrade-nginx-to-the-latest-stable-version-on-ubuntu-cbfac70afb65
+
+```
+$ nginx -v
+$ sudo cp -r /etc/nginx /etc/nginx.backup
+$ sudo apt update
+$ sudo apt install software-properties-common
+$ sudo add-apt-repository ppa:nginx/stable
+$ sudo apt update
+$ sudo apt install nginx -> Contestar **N** keep your currently-installed version
+$ nginx -v
+$ sudo systemctl restart nginx
+$ sudo nginx -t
+$ sudo systemctl status nginx
+```
