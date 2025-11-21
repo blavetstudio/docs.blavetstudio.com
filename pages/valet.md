@@ -484,3 +484,15 @@ Para corregirlo hay que borrar los bloqueos
 ```
 $ rm -rf "$(brew --prefix)/var/homebrew/locks"
 ```
+
+
+## Error al cargar librería libsqlite3.dylib
+
+Al hacer un paso de php8.1 a php8.2 se ha actualizado solo brew y se ha producido este error
+
+Library not loaded: @loader_path/../../../../opt/sqlite/lib/libsqlite3.dylib
+
+Los pasos a seguir para solucionarlo:
+
+brew uninstall php@8.1
+brew install php@8.1

@@ -37,11 +37,7 @@ Step 2. Click on Safari at the top > Open Preferences > Advanced
 
 Step 3. Mark the checkbox – Show Develop menu in the menu bar to enable it
 
-How to debug on iphone using safari
-
 Step 4. Now, you’ll be able to view the Develop menu in the top bar. Click on it and it will show the connected iPhone or iPad along with the URL that is active on Safari.
-
-How to Debug on iOS devices
 
 Step 5. By Clicking on that URL, a new inspector window will open that allows the developer to inspect, preview, or debug the page on a mobile browser from their Mac. Just click on the Resources section, and then all interactions with the web elements will be highlighted in real-time on that iPhone.
 
