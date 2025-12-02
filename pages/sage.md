@@ -170,3 +170,20 @@ try {
     );
 }
 ```
+
+
+## wp/app/themes/
+
+Si al actualizar todo, plugins y composer packages y sobre todo Acorn a la 5.0 y hay un error al cargar los estilos porque a la ruta le pone *dominio.com/wp/app* en vez de *dominio.com/app* es por culpa de Soil
+
+1. Desactivar Soil
+2. wp acorn optimize
+
+
+## Al actualizar ACF Composer en un proyecto basado en las primeras versiones de Sage 10 no se cargan los scripts
+
+El problema es que se lanza antes el hook do_action( 'enqueue_block_assets' ); que los add_action('enqueue_block_assets' de acf_composer
+
+Hay que hacer los cambios de este PR en Sage:
+
+https://github.com/roots/sage/pull/3167
