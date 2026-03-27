@@ -496,3 +496,24 @@ Los pasos a seguir para solucionarlo:
 
 brew uninstall php@8.1
 brew install php@8.1
+
+## Fallo en carga versión PHP
+
+Al hacer
+
+```$ valet use 8.3```
+
+nos carga la versión shivammathur/php que actualmente es la 8.5, en lugar de cargar la 8.3, porque entiende que la última es la 8.3 y no se como decirle que shivammathur/php es la 8.5
+
+Entonces tenemos que hacer un unlink de la 8.5 y hacer el link de la 8.3 a mano, en lugar de hacerlo con valet use:
+
+```$ brew unlink php@8.5```
+```$ brew link php@8.3```
+```$ valet restart```
+
+Es posible que al hacer esto, la versión de php de la web sean diferentes, eso es porque al hacer brew link y valet start no se carga correctamente la versión de php. Para esto hay que hacer lo que pone en el punto más arriba:
+*Versión diferente de PHP en consola o servidor*
+
+Para saber las versiones de php que tenemos instaladas:
+
+```$ brew list|grep php```
