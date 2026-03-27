@@ -56,7 +56,7 @@ La sacaremos de trellis/.vault-pass
 
 **TRELLIS_DEPLOY_SSH_PRIVATE_KEY**  
 Es la clave privada, no la pública. La sacaremos de ~/.ssh/id_rsa
-Esta key debe de estar incluida en el servidor para que se pueda conetar
+Esta key debe de estar incluida en el servidor para que se pueda conectar
 En Kinsta tenemos puestas dos keys: la del equipo de Josh y la de Carlos. Utilizar una de las dos.
 
 **TRELLIS_DEPLOY_SSH_KNOWN_HOSTS**  
