@@ -436,8 +436,11 @@ https://www.reddit.com/r/mariadb/comments/1ekz4zh/comment/lgqrmdo/
 
 **Al final lo que he hecho ha sido reinstalar mariadb renombrando la carpeta /usr/local/var/mysql/ a /usr/local/var/mysql_back/ y copiando el archivo ib_logfile0 de la nueva instalación a la antigua. Por último se renombra la carpeta mysql a mysql_new y mysql_back a mysql para tener acceso a las bases de datos.**
 
+https://stackoverflow.com/a/77326106/504910
+
 Si sigue dando error, el problema puede ser el fallo en la configuración en el archivo /usr/local/etc/my.cnf. Podemos guardarnos un backup ese archivo y ejecutar esto para que se vuelva a generar:
 ```brew postinstall mariadb```
+
 
 Luego he tenido el error de que el usuario root no tenía el password root, con lo que he tenido que resetearlo de nuevo
 
